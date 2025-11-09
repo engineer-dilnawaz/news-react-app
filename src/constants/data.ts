@@ -31,6 +31,39 @@ export const CATEGORIES = [
   },
 ] as const;
 
+export const KNOWIVATE_CATEGORIES = [
+  {
+    id: 1,
+    value: "latest",
+    label: "Latest",
+  },
+  {
+    id: 2,
+    value: "local",
+    label: "Local",
+  },
+  {
+    id: 3,
+    value: "agriculture",
+    label: "Agriculture",
+  },
+  {
+    id: 4,
+    value: "business",
+    label: "Business",
+  },
+  {
+    id: 5,
+    value: "technologies",
+    label: "Technology",
+  },
+  {
+    id: 6,
+    value: "sports",
+    label: "Sports",
+  },
+] as const;
+
 export const COUNTRIES = [
   { name: "Andorra", code: "ad" },
   { name: "United Arab Emirates", code: "ae" },
@@ -222,4 +255,27 @@ export const COUNTRIES = [
   { name: "South Africa", code: "za" },
   { name: "Zambia", code: "zm" },
   { name: "Zimbabwe", code: "zw" },
+] as const;
+
+export const EXPLORE_APP_CATEGORIES = [
+  {
+    id: 1,
+    value: "/",
+    label: "Home",
+  },
+  {
+    id: 2,
+    value: "/bookmarked",
+    label: "Bookmarked News",
+  },
+  {
+    id: 3,
+    value: "/search",
+    label: "Search News",
+  },
+  {
+    id: 4,
+    value: "/front-page",
+    label: "Front Page News",
+  },
 ] as const;

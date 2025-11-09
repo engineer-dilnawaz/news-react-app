@@ -8,3 +8,12 @@ export const ENDPOINTS = {
   EXTRACT_NEWS_LINKS: "/extract-news-links",
   NEWS_SOURCES: "/search-news-sources",
 };
+
+export const KNOWIVATE_ENDPOINTS = {
+  LATEST_NEWS: "/latest",
+  LOCAL_NEWS: "/local",
+  AGRICULTURAL_NEWS: "/agriculture",
+  SPORTS_NEWS: "/sports",
+  BUSINESS_NEWS: "/business",
+  TECHNOLOGY_NEWS: "/technologies",
+};

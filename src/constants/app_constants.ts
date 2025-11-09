@@ -1,4 +1,7 @@
-const API_KEY = import.meta.env.VITE_API_KEY;
+const API_KEY = import.meta.env.VITE_NEWS_API;
 const BASE_URL = "https://api.worldnewsapi.com";
 
-export { API_KEY, BASE_URL };
+// Knowivate API Base URL
+const KNOWIVATE_BASE_URL = "https://news.knowivate.com/api";
+
+export { API_KEY, BASE_URL, KNOWIVATE_BASE_URL };

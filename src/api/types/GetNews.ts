@@ -8,7 +8,7 @@ type TopNews = {
   news: News[];
 };
 
-type News = {
+export type News = {
   id: number;
   title: string;
   text: string;
@@ -19,4 +19,10 @@ type News = {
   publish_date: string;
   author?: string;
   authors: string[];
+};
+
+export type GetNewsParams = {
+  sourceCountry?: string;
+  language?: string;
+  date?: string;
 };

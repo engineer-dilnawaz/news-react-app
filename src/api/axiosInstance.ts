@@ -1,6 +1,10 @@
 import axios from "axios";
 
-import { API_KEY, BASE_URL } from "../constants/app_constants";
+import {
+  API_KEY,
+  BASE_URL,
+  KNOWIVATE_BASE_URL,
+} from "../constants/app_constants";
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -14,10 +18,13 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = API_KEY;
+    config.headers.set("Accept", "application/json");
+    config.headers.set("Content-Type", "application/json");
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      // config.headers.Authorization = `Bearer ${token}`;
       config.headers["x-api-key"] = token;
     }
+
     return config;
   },
   (error) => Promise.reject(error)
@@ -33,5 +40,35 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+const knowivateApi = axios.create({
+  baseURL: KNOWIVATE_BASE_URL,
+  timeout: 10000,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// knowivateApi.interceptors.request.use(
+//   (config) => {
+//     const token = API_KEY;
+//     config.headers.set("Accept", "application/json");
+//     config.headers.set("Content-Type", "application/json");
+//     if (token) {
+//       config.headers["x-api-key"] = token;
+//     }
+//     return config;
+//   },
+//   (error) => Promise.reject(error)
+// );
+
+knowivateApi.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    return Promise.reject(error);
+  }
+);
+
+export { api, knowivateApi };
 
 export default api;

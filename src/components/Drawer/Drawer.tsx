@@ -1,19 +1,27 @@
-import { Fragment } from "react/jsx-runtime";
 import MenuIcon from "@mui/icons-material/Menu";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import MuiDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+import { Fragment } from "react/jsx-runtime";
 
-import { CATEGORIES } from "../../constants/data";
+import { ListSubheader } from "@mui/material";
+import {
+  EXPLORE_APP_CATEGORIES,
+  KNOWIVATE_CATEGORIES,
+} from "../../constants/data";
 import { useDrawer } from "./useDrawer";
 
 export function Drawer() {
-  const { setSelectedCategory, open, handleOpenDrawer, handleCloseDrawer } =
-    useDrawer();
+  const {
+    open,
+    handleSelectCategory,
+    handleOpenDrawer,
+    handleCloseDrawer,
+    handleExploreAppClick,
+  } = useDrawer();
 
   return (
     <Fragment>
@@ -26,26 +34,62 @@ export function Drawer() {
           color="action"
         />
       </Button>
-      <MuiDrawer anchor={"left"} open={open} onClose={handleCloseDrawer}>
-        <Box
-          sx={{ width: 200 }}
-          role="presentation"
-          onClick={handleCloseDrawer}
-          onKeyDown={handleCloseDrawer}
+      <MuiDrawer
+        anchor={"left"}
+        open={open}
+        onClose={handleCloseDrawer}
+        sx={{ width: "auto" }}
+      >
+        <List
+          sx={{ width: "100%", bgcolor: "background.paper" }}
+          subheader={
+            <ListSubheader component="div" id="nested-list-subheader">
+              Explore App
+            </ListSubheader>
+          }
         >
-          <ListItem alignItems="center" divider>
-            <ListItemText primary={"All Categories"} />
-          </ListItem>
-          <List>
-            {CATEGORIES.map((category) => (
-              <ListItem key={category.value} disablePadding>
-                <ListItemButton onClick={() => setSelectedCategory(category)}>
-                  <ListItemText primary={category.label} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        </Box>
+          {EXPLORE_APP_CATEGORIES.map((category) => (
+            <ListItem
+              key={category.value}
+              disablePadding
+              onClick={() => handleExploreAppClick(category)}
+              sx={{
+                cursor: "pointer",
+
+                paddingInline: 2,
+              }}
+            >
+              <ListItemButton>
+                <ListItemText primary={category.label} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+
+        <List
+          sx={{
+            width: "100%",
+            bgcolor: "background.paper",
+          }}
+          component="nav"
+          subheader={
+            <ListSubheader component="div" id="nested-list-subheader">
+              News Categories
+            </ListSubheader>
+          }
+        >
+          {KNOWIVATE_CATEGORIES.map((category) => (
+            <ListItem
+              sx={{ cursor: "pointer", paddingInline: 2 }}
+              key={category.value}
+              disablePadding
+            >
+              <ListItemButton onClick={() => handleSelectCategory(category)}>
+                <ListItemText primary={category.label} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
       </MuiDrawer>
     </Fragment>
   );

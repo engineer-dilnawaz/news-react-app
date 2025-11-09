@@ -1,8 +1,10 @@
+import { Link } from "react-router";
+
 import { APP_LOGO } from "../../constants/assets";
 
 export const AppLogo = () => {
   return (
-    <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+    <Link to="/" style={{ flex: 1, display: "flex", justifyContent: "center" }}>
       <img
         src={APP_LOGO}
         alt="logo"
@@ -13,6 +15,6 @@ export const AppLogo = () => {
           cursor: "pointer",
         }}
       />
-    </div>
+    </Link>
   );
 };

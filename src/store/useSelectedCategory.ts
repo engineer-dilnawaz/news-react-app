@@ -1,14 +1,14 @@
 import { create } from "zustand";
 
-import type { Category } from "../types";
-import { CATEGORIES } from "../constants/data";
+import type { KnowivateCategory } from "../types";
+import { KNOWIVATE_CATEGORIES } from "../constants/data";
 
 interface CategoryState {
-  selectedCategory: Category;
-  setSelectedCategory: (category: Category) => void;
+  selectedCategory: KnowivateCategory;
+  setSelectedCategory: (category: KnowivateCategory) => void;
 }
 
 export const useSelectedCategory = create<CategoryState>((set) => ({
-  selectedCategory: CATEGORIES[0],
+  selectedCategory: KNOWIVATE_CATEGORIES[0],
   setSelectedCategory: (category) => set({ selectedCategory: category }),
 }));
