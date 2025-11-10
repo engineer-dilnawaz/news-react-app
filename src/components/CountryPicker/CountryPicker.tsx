@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Box,
   Dialog,
   DialogTitle,
   Divider,
@@ -7,6 +8,7 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
+  TextField,
   Typography,
 } from "@mui/material";
 
@@ -14,8 +16,15 @@ import { generateFlag } from "../../utils";
 import { useCountryPicker } from "./useCountryPicker";
 
 export const CountryPicker = () => {
-  const { countriesList, handleClose, open, handleSelect, isSelected } =
-    useCountryPicker();
+  const {
+    countriesList,
+    handleClose,
+    open,
+    handleSelect,
+    isSelected,
+    search,
+    setSearch,
+  } = useCountryPicker();
   return (
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle
@@ -30,14 +39,34 @@ export const CountryPicker = () => {
         }}
       >
         <Typography color="primary">Select Country</Typography>
-
         <Typography variant="caption" color="textSecondary">
           {countriesList.length} countries
         </Typography>
       </DialogTitle>
+
+      <Box sx={{ px: 2 }}>
+        <TextField
+          name="search"
+          label="Search Country"
+          type="text"
+          variant="standard"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          fullWidth
+        />
+      </Box>
+
       <Divider />
 
-      <List sx={{ pt: 0, display: "flex", flexWrap: "wrap", mt: 1, gap: 1 }}>
+      <List
+        sx={{
+          pt: 0,
+          display: "flex",
+          flexWrap: "wrap",
+          mt: 3,
+          gap: 1,
+        }}
+      >
         {countriesList.map((country) => (
           <ListItem
             key={country.code}

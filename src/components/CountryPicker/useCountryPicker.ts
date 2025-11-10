@@ -11,9 +11,11 @@ export const useCountryPicker = () => {
   );
   const [search, setSearch] = useState("");
 
-  const countriesList = [...COUNTRIES].filter((country) =>
-    country.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const countriesList = [...COUNTRIES]
+    .sort((a: Country, b: Country) => a.name.localeCompare(b.name))
+    .filter((country) =>
+      country.name.toLowerCase().includes(search.toLowerCase())
+    );
 
   const handleOpen = () => setOpen(true);
 

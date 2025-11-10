@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 import { useSelectedCategory } from "../../store";
 import type { ExploreAppCategory, KnowivateCategory } from "../../types";
 
 export const useDrawer = () => {
   const [open, setOpen] = useState(false);
-  const { setSelectedCategory } = useSelectedCategory((state) => state);
+  const { selectedCategory, setSelectedCategory } = useSelectedCategory(
+    (state) => state
+  );
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const handleOpenDrawer = () => setOpen(true);
 
@@ -23,11 +26,15 @@ export const useDrawer = () => {
     handleCloseDrawer();
   };
 
+  const activePage = pathname?.toLowerCase() || "/";
+
   return {
     open,
     handleOpenDrawer,
     handleCloseDrawer,
     handleSelectCategory,
     handleExploreAppClick,
+    activePage,
+    selectedCategory,
   };
 };

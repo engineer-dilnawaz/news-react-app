@@ -6,11 +6,23 @@ import {
   Typography,
 } from "@mui/material";
 import { NewsCard } from "../../components";
-import { useLatestNews } from "../../hooks/useLatestNews";
+import type { LatestNews } from "../../api/types";
+// import { useLatestNews } from "../../hooks/useLatestNews";
 
 export const Home = () => {
-  const { latestNewsData, isLatestNewsLoading, latestNewsError } =
-    useLatestNews();
+  // const { latestNewsData, isLatestNewsLoading, latestNewsError } =
+  //   useLatestNews();
+  const {
+    data: latestNewsData,
+    isLoading: isLatestNewsLoading,
+    error: latestNewsError,
+  } = {
+    data: [],
+    isLoading: false,
+    error: {
+      message: "Error fetching latest news",
+    },
+  };
 
   if (isLatestNewsLoading) {
     return (
@@ -91,8 +103,8 @@ export const Home = () => {
         gap: 2,
       }}
     >
-      {latestNewsData.map((news) => (
-        <NewsCard key={news._id} news={news} />
+      {latestNewsData.map((news: Record<string, string>) => (
+        <NewsCard key={news._id} news={news as unknown as LatestNews} />
       ))}
     </Container>
   );

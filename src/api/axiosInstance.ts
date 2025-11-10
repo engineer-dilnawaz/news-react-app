@@ -45,6 +45,7 @@ const knowivateApi = axios.create({
   baseURL: KNOWIVATE_BASE_URL,
   timeout: 10000,
   headers: {
+    "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
   },
 });

@@ -1,3 +1,4 @@
+import { Fragment } from "react/jsx-runtime";
 import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 import MuiDrawer from "@mui/material/Drawer";
@@ -5,7 +6,6 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import { Fragment } from "react/jsx-runtime";
 
 import { ListSubheader } from "@mui/material";
 import {
@@ -21,6 +21,8 @@ export function Drawer() {
     handleOpenDrawer,
     handleCloseDrawer,
     handleExploreAppClick,
+    activePage,
+    selectedCategory,
   } = useDrawer();
 
   return (
@@ -55,11 +57,22 @@ export function Drawer() {
               onClick={() => handleExploreAppClick(category)}
               sx={{
                 cursor: "pointer",
-
                 paddingInline: 2,
               }}
             >
-              <ListItemButton>
+              <ListItemButton
+                selected={activePage === category.value?.toLowerCase()}
+                sx={{
+                  borderRadius: 1,
+                  ...(activePage === category.value?.toLowerCase() && {
+                    bgcolor: "primary.main",
+                    color: "white",
+                    "&:hover": {
+                      bgcolor: "primary.dark",
+                    },
+                  }),
+                }}
+              >
                 <ListItemText primary={category.label} />
               </ListItemButton>
             </ListItem>
@@ -84,7 +97,17 @@ export function Drawer() {
               key={category.value}
               disablePadding
             >
-              <ListItemButton onClick={() => handleSelectCategory(category)}>
+              <ListItemButton
+                onClick={() => handleSelectCategory(category)}
+                selected={selectedCategory.value === category.value}
+                sx={{
+                  borderRadius: 1,
+                  ...(selectedCategory.value === category.value && {
+                    bgcolor: "primary.main",
+                    color: "white",
+                  }),
+                }}
+              >
                 <ListItemText primary={category.label} />
               </ListItemButton>
             </ListItem>
